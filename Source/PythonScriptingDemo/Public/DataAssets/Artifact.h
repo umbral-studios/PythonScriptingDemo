@@ -2,16 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "PythonScriptingDemo/PythonScriptingDemo.h"
 #include "Artifact.generated.h"
-
-UENUM(BlueprintType)
-enum ERarity
-{
-	Common UMETA(DisplayName = "Common"),
-	Uncommon UMETA(DisplayName = "Uncommon"),
-	Rare UMETA(DisplayName = "Rare"),
-	Legendary UMETA(DisplayName = "Legendary"),
-};
 
 UCLASS()
 class PYTHONSCRIPTINGDEMO_API UArtifact : public UPrimaryDataAsset
@@ -23,9 +15,6 @@ public:
 	FName Name;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	int32 Cost;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TEnumAsByte<ERarity> Rarity;
 
 	UFUNCTION(BlueprintCallable, Category = "Artifact")
@@ -35,5 +24,11 @@ public:
 		{
 			Rarity = static_cast<ERarity>(NewRarity);
 		}
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "Artifact")
+	ERarity GetRarity() const
+	{
+		return Rarity;
 	}
 };
