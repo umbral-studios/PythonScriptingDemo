@@ -19,4 +19,11 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int Cost;
+
+	UFUNCTION(BlueprintCallable)
+	UDA_Item* GetItemByName(const FString ItemName)
+	{
+		return FindObject<UDA_Item>(ANY_PACKAGE, *ItemName);
+	}
+	
 };

@@ -27,4 +27,19 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TEnumAsByte<ERarity> Rarity;
+
+	UFUNCTION(BlueprintCallable)
+	void SetRarity(int NewRarity)
+	{
+		if(NewRarity >= 0 && NewRarity <= (int32)ERarity::Legendary)
+		{
+			Rarity = static_cast<ERarity>(NewRarity);
+		}
+	}
+	
+	UFUNCTION(BlueprintCallable)
+	ERarity GetRarity()
+	{
+		return Rarity;
+	}
 };
